@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:webview_app/app_colors.dart';
 
@@ -22,10 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   late InAppWebViewController inAppWebViewController;
   late ConnectivityResult _connectivityResult;
   late StreamSubscription<ConnectivityResult> subscription;
-
   final GlobalKey webViewKey = GlobalKey();
   PullToRefreshController? pullToRefreshController;
-
   bool pullToRefreshEnabled = true;
 
   @override
@@ -72,91 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
   dispose() {
     subscription.cancel();
     super.dispose();
-  }
-
-  showExitPopup() {
-    return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          content: Text(
-            exit,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColors.colorBlack,
-              fontWeight: FontWeight.w700,
-              fontSize: 16.sp,
-            ),
-          ),
-          contentPadding: const EdgeInsets.only(
-            left: 24,
-            right: 24,
-            top: 32,
-            bottom: 24,
-          ),
-          actions: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 30.h,
-                  width: 72.w,
-                  decoration: BoxDecoration(
-                    color: AppColors.colorPrimary,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      SystemNavigator.pop();
-                    },
-                    child: Center(
-                      child: Text(
-                        yes,
-                        style: TextStyle(
-                          color: AppColors.colorWhite,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.sp,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                Container(
-                  height: 30.h,
-                  width: 72.w,
-                  decoration: BoxDecoration(
-                    color: AppColors.colorWhite,
-                    border: Border.all(width: 1.w, color: Colors.grey),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Center(
-                      child: Text(
-                        no,
-                        style: TextStyle(
-                          color: AppColors.colorBlack,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 14.sp,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-          actionsPadding: const EdgeInsets.only(bottom: 32),
-        );
-      },
-    );
   }
 
   Future<void> _retryInternetConnection() async {
@@ -238,7 +150,6 @@ class _HomeScreenState extends State<HomeScreen> {
           inAppWebViewController.goBack();
           return false;
         }
-        showExitPopup();
         return true;
       },
       child: SafeArea(
@@ -251,7 +162,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   initialUrlRequest: URLRequest(
                     url: Uri.parse(webAppUrl),
                   ),
-
                   pullToRefreshController: pullToRefreshController,
                   onWebViewCreated: (InAppWebViewController controller) {
                     inAppWebViewController = controller;
@@ -262,9 +172,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                     pullToRefreshController?.endRefreshing();
                   },
-                  // onReceivedError: (controller, request, error) {
-                  //   pullToRefreshController?.endRefreshing();
-                  // },
                   onProgressChanged: (controller, progress) {
                     if (progress == 100) {
                       pullToRefreshController?.endRefreshing();
@@ -273,7 +180,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   initialOptions: InAppWebViewGroupOptions(
                     android: AndroidInAppWebViewOptions(
                       initialScale: 100,
-                      // useWideViewPort: true,
                       builtInZoomControls: false,
                       displayZoomControls: false,
                       scrollbarFadingEnabled: true,
@@ -313,17 +219,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
             ],
           ),
-          floatingActionButton: _connectivityResult != ConnectivityResult.none
-              ? FloatingActionButton(
-                  onPressed: () async {},
-                  backgroundColor: AppColors.colorStatusBar,
-                  child: const Icon(
-                    Icons.arrow_upward,
-                    color: AppColors.colorWhite,
-                    size: 25,
-                  ),
-                )
-              : null,
         ),
       ),
     );

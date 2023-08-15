@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:webview_app/app_colors.dart';
 import 'package:webview_app/screens/home_screen.dart';
 
+import '../constant.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -27,13 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SizedBox(
         width: double.infinity,
         child: Center(
-          child: Text(
-            "Git Glimpse",
-            style: TextStyle(
-                fontSize: 30.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.colorWhite),
-          ),
+          child: Image.asset("assets/images/splashLogo.png",
+              height: 200.h, width: 200.w),
         ),
       ),
     );
