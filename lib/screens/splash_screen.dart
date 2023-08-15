@@ -22,17 +22,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
+      backgroundColor: AppColors.colorSplashScreen,
       body: SizedBox(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Git Glimpse", style: TextStyle(
-              fontSize: 30.sp,
-              color: AppColors.colorWhite
-            ),),
-          ],
+        child: Center(
+          child: Text(
+            "Git Glimpse",
+            style: TextStyle(
+                fontSize: 30.sp,
+                fontWeight: FontWeight.bold,
+                color: AppColors.colorWhite),
+          ),
         ),
       ),
     );
