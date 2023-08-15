@@ -4,10 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:webview_app/app_colors.dart';
 
 import '../constant.dart';
@@ -316,12 +314,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           floatingActionButton: _connectivityResult != ConnectivityResult.none
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: FloatingActionButton(
-                    onPressed: () async {},
-                    backgroundColor: AppColors.colorStatusBar,
-                    child: SvgPicture.asset("assets/images/chat.svg"),
+              ? FloatingActionButton(
+                  onPressed: () async {},
+                  backgroundColor: AppColors.colorStatusBar,
+                  child: const Icon(
+                    Icons.arrow_upward,
+                    color: AppColors.colorWhite,
+                    size: 25,
                   ),
                 )
               : null,
