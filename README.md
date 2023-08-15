@@ -1,6 +1,6 @@
-# webview_app
+# Git Glimpse - Your GitHub Profile in an App
 
-A new Flutter project.
+Git Glimpse is a Flutter-based mobile application that provides you with a comprehensive and convenient way to view your GitHub profile right from your mobile device. With Git Glimpse, you can easily stay updated on your repositories, followers, following, and much more, all in a sleek and user-friendly interface.
 
 ## Getting Started
 
