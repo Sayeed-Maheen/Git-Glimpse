@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:webview_app/app_colors.dart';
 import 'package:webview_app/screens/home_screen.dart';
 
-import '../constant.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 

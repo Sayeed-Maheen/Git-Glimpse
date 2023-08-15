@@ -32,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
     pullToRefreshController = kIsWeb
         ? null
         : PullToRefreshController(
-            //settings: pullToRefreshSettings,
             onRefresh: () async {
               if (defaultTargetPlatform == TargetPlatform.android) {
                 inAppWebViewController.reload();
