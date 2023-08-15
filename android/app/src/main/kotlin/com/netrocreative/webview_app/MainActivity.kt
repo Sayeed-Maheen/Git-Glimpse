@@ -1,4 +1,4 @@
-package com.netrocreative.webview_app
+package com.sayeed_hassan.git_glimpse
 
 import io.flutter.embedding.android.FlutterActivity
 

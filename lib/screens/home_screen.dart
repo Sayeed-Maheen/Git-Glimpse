@@ -9,10 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:webview_app/app_colors.dart';
-import 'package:webview_app/chatGPT/chat_screen.dart';
 
 import '../constant.dart';
-import '../models/ad_platform.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,30 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
   late ConnectivityResult _connectivityResult;
   late StreamSubscription<ConnectivityResult> subscription;
 
-  static final AppLovin adManager = AppLovin();
-  //static final RewardedAdManager rewardedAdManager = RewardedAdManager();
-  final AdMob adMobInterstitial = AdMob();
-
   final GlobalKey webViewKey = GlobalKey();
   PullToRefreshController? pullToRefreshController;
-  //InAppWebViewSettings settings = InAppWebViewSettings();
 
-  // PullToRefreshSettings pullToRefreshSettings = PullToRefreshSettings(
-  //   color: Colors.blue,
-  // );
   bool pullToRefreshEnabled = true;
 
   @override
   void initState() {
     super.initState();
     _initConnectivity();
-    //rewardedAdManager.loadRewardedAd();
-    adMobInterstitial.initInterstitialAd();
     pullToRefreshController = kIsWeb
         ? null
         : PullToRefreshController(
             //settings: pullToRefreshSettings,
-
             onRefresh: () async {
               if (defaultTargetPlatform == TargetPlatform.android) {
                 inAppWebViewController.reload();
@@ -332,114 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ? Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: FloatingActionButton(
-                    onPressed: () async {
-                      // String adPlatform = adPlatfrom; // Corrected typo
-                      //
-                      // if (adPlatform == adMob) {
-                      //   // Enclosed ad platform names in quotation marks
-                      //   adMobInterstitial.showInterstitialAd();
-                      // } else if (adPlatform == appLovin) {
-                      //   // Enclosed ad platform names in quotation marks
-                      //   adManager.initializeInterstitialAds();
-                      //   adManager.showInterstitialAd();
-                      // }
-
-                      showModalBottomSheet(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12.0),
-                            topRight: Radius.circular(12.0),
-                          ),
-                        ),
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (BuildContext context) {
-                          return StatefulBuilder(
-                            builder:
-                                (BuildContext context, StateSetter setState) {
-                              double sheetHeight =
-                                  MediaQuery.of(context).size.height * 0.6;
-                              return GestureDetector(
-                                onVerticalDragUpdate:
-                                    (DragUpdateDetails details) {
-                                  setState(() {
-                                    // Adjust the sensitivity as needed (e.g., 0.5 for slower resizing)
-                                    sheetHeight += details.delta.dy * 0.3;
-                                    sheetHeight = sheetHeight.clamp(
-                                      MediaQuery.of(context).size.height *
-                                          0.5, // Minimum height
-                                      MediaQuery.of(context).size.height *
-                                          0.87, // Maximum height
-                                    );
-                                  });
-                                },
-                                child: KeyboardVisibilityBuilder(
-                                  builder: (context, isKeyboardVisible) {
-                                    return Container(
-                                      height: isKeyboardVisible
-                                          ? MediaQuery.of(context).size.height *
-                                              0.87
-                                          : sheetHeight,
-                                      decoration: const BoxDecoration(
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: [
-                                            AppColors.colorGradientStart,
-                                            AppColors.colorGradientMiddle,
-                                            AppColors.colorGradientEnd
-                                          ],
-                                        ),
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(12.0),
-                                          topRight: Radius.circular(12.0),
-                                        ),
-                                      ),
-                                      child: NotificationListener<
-                                          OverscrollIndicatorNotification>(
-                                        onNotification: (overScroll) {
-                                          overScroll.disallowGlow();
-                                          return true;
-                                        },
-                                        child: SingleChildScrollView(
-                                          physics: isKeyboardVisible
-                                              ? const NeverScrollableScrollPhysics()
-                                              : const AlwaysScrollableScrollPhysics(),
-                                          child: SizedBox(
-                                            height: isKeyboardVisible
-                                                ? MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.87
-                                                : sheetHeight,
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(16),
-                                              child: ChatScreen(),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ).then((value) {
-                        print("Bottom Sheet showed");
-                        String adPlatform = adPlatfrom; // Corrected typo
-
-                        if (adPlatform == adMob) {
-                          // Enclosed ad platform names in quotation marks
-                          adMobInterstitial.showInterstitialAd();
-                        } else if (adPlatform == appLovin) {
-                          // Enclosed ad platform names in quotation marks
-                          adManager.initializeInterstitialAds();
-                          adManager.showInterstitialAd();
-                        }
-                      });
-                    },
+                    onPressed: () async {},
                     backgroundColor: AppColors.colorStatusBar,
                     child: SvgPicture.asset("assets/images/chat.svg"),
                   ),

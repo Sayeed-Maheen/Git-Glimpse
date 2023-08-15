@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.netrocreative.webview_app">
+    package="com.sayeed_hassan.git_glimpse">
     <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="Netro Creative"
+        android:label="Git Glimpse"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
