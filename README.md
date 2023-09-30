@@ -70,5 +70,5 @@ Git Glimpse is licensed under the MIT License. See the [LICENSE](https://choosea
 
 ## Contact
 
-If you have questions, suggestions, or issues, please don't hesitate to [contact me](mailto:sayeedhassan1124.com).
+If you have questions, suggestions, or issues, please don't hesitate to [contact me](mailto:sayeedhassan1124@gmail.com).
 
