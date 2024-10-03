@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:webview_app/app_colors.dart';
-import 'package:webview_app/screens/home_screen.dart';
+import 'package:get/get.dart';
+import 'package:webview_app/utils/app_colors.dart';
+import 'package:webview_app/controllers/splash_controller.dart';
+// Import the controller
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 3)).then((value) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-    });
-  }
-
+class SplashScreen extends StatelessWidget {
+  SplashScreen({super.key});
+  final SplashController controller = Get.put(SplashController());
   @override
   Widget build(BuildContext context) {
+    // Initialize the SplashController using Get.put()
+
     return Scaffold(
       backgroundColor: AppColors.colorSplashScreen,
       body: SizedBox(
